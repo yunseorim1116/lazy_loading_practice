@@ -35,7 +35,6 @@ const createMockData = (movieData)=>{
       const src = image.getAttribute('data-src');
       const img = new Image();
       img.src = src;
-      console.log(img)
       img.onload = () => {
         image.setAttribute('src', src);
         image.classList.remove('lazy');
@@ -67,7 +66,7 @@ const renderMovieData = (processedData) => {
     movieElement.classList.add('movie');
 
     const movieImg = document.createElement('img');
-    movieImg.classList.add('movie-img');
+    movieImg.classList.add('movie-img', 'lazy');
     const movieImgSrc = "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG";
     movieImg.setAttribute('data-src', movieImgSrc);
     movieImg.setAttribute('alt', movieData.movieNmEn);
