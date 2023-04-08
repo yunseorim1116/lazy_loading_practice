@@ -23,8 +23,7 @@ const createMockData = (movieData)=>{
 }
 
   const handleLazyLoad = () => {
-    console.log('b')
-    const images = document.querySelectorAll('.movie-img');
+    const images = document.querySelectorAll('.movie-img'); //전체 이미지 셀렉
     const options = {
       root: null,
       rootMargin: '0px',
@@ -34,19 +33,18 @@ const createMockData = (movieData)=>{
     const loadImage = image => {
       const src = image.getAttribute('data-src');
       const img = new Image();
-      img.src = src;
-      img.onload = () => {
+      img.src = src; //이미지 넣어주고
+      img.onload = () => {//로드
         image.setAttribute('src', src);
         image.classList.remove('lazy');
       };
     };
 
-    const handleIntersection = entries => {
-      console.log('bs')
+    const handleIntersection = entries => { //인터섹션 옵저브 사용
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting) {//이미지가 보일때,loadImage 실행
           const image = entry.target;
-          loadImage(image);
+          loadImage(image);//이미지가 보일때, 이미지를 load해준다.
           observer.unobserve(image);
         }
       });
