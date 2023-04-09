@@ -1,7 +1,8 @@
 
 import { API_KEY } from "./apikey.js";
-
-const fetchMovieData = async(movieDate) =>{
+import axios from 'axios';
+console.log(axios)
+export const fetchMovieData = async(movieDate) =>{
   const movieApiUrl = 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json';
 
   try {
@@ -14,7 +15,7 @@ const fetchMovieData = async(movieDate) =>{
   }
 }
 
-const createMockData = (movieData)=>{
+export const createMockData = (movieData)=>{
     const newMovieList = []
     for (let i =0; i< 5; i++){
     newMovieList.push(...movieData)
@@ -22,7 +23,7 @@ const createMockData = (movieData)=>{
   return newMovieList
 }
 
-  const handleLazyLoad = () => {
+  export const handleLazyLoad = () => {
     const images = document.querySelectorAll('.movie-img'); //전체 이미지 셀렉
     const options = {
       root: null,
@@ -54,7 +55,7 @@ const createMockData = (movieData)=>{
     images.forEach(image => observer.observe(image));
   };
 
-const renderMovieData = (processedData) => {
+export const renderMovieData = (processedData) => {
   const movieContainer = document.createElement('div');
   movieContainer.classList.add('movie-container');
 
@@ -95,13 +96,13 @@ const renderMovieData = (processedData) => {
 
 
 
-window.onload = async function() {
-  try {
-    const movieData = await fetchMovieData('20220407');
-    const processedData = createMockData(movieData);
-    renderMovieData(processedData);
-    handleLazyLoad();
-  } catch (error) {
-    console.log(error);
-  }
-};
+// window.onload = async function() {
+//   try {
+//     const movieData = await fetchMovieData('20220407');
+//     const processedData = createMockData(movieData);
+//     renderMovieData(processedData);
+//     handleLazyLoad();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
